@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
+    [SerializeField] float gravity = -9.81f;
+    public float speed = 5f;
+    public float movementX;
+    public float movementY;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
