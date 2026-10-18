@@ -8,11 +8,13 @@ public class playerMovement : MonoBehaviour
     public float movementX;
     public float movementY;
     public bool slowFall = false;
+    private float killSpeed = 15f;
     private float speedTime = 10f;
     private Rigidbody2D playerObj;
     [SerializeField] public int health = 3;
     [SerializeField] private float origfallDist = 10f;
     public float fallDist;
+    private Vector2 preVelocity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,11 +23,17 @@ public class playerMovement : MonoBehaviour
         playerObj = GetComponent<Rigidbody2D>();
     }
 
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
     void FixedUpdate()
     {
         float XmoveDistance = movementX * Time.fixedDeltaTime * speed;
         float YmoveDistance = movementY * Time.fixedDeltaTime * speed;
-        playerObj.linearVelocity = new Vector2(XmoveDistance, YmoveDistance);
+        playerObj.linearVelocityX = XmoveDistance;
+        preVelocity = playerObj.linearVelocity;
     }
 
     // Update is called once per frame
@@ -37,12 +45,25 @@ public class playerMovement : MonoBehaviour
         {
             speed = 40f;
             speedTime -= Time.deltaTime;
-            if(speedTime < 0f)
+            playerObj.gravityScale = .5f;
+            if (speedTime < 0f)
             {
                 speedTime = 10f;
                 slowFall = false;
                 speed = origspeed;
+                playerObj.gravityScale = 1;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground") && preVelocity.y < 0 && -preVelocity.y >= killSpeed)
+        {
+            Die();
+        } else if (collision.gameObject.CompareTag("cushion"))
+        {
+            //playerObj.AddForce(new Vector2(0, 200f));
         }
     }
 
