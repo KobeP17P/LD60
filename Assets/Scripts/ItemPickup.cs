@@ -26,6 +26,7 @@ public class ItemPickup : MonoBehaviour
         Debug.Log("Hit something solid: ");
         if (other != null && other.gameObject.CompareTag("player") && this.gameObject.CompareTag("jetpack")){
             playerScript.slowFall = true;
+            playerScript.fallDist += 10f;
         }
         Destroy(transform.gameObject);
     }
