@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
-    [SerializeField] float gravity = -9.81f;
     public float origspeed = 200f;
     private float speed;
     public float movementX;
@@ -55,7 +54,7 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground") && preVelocity.y < 0 && -preVelocity.y >= killSpeed)
@@ -73,8 +72,9 @@ public class playerMovement : MonoBehaviour
         movementX = inputVector.x;
         movementY = inputVector.y;
     }
+    /*
 
-    void OnCollisionEnter2D(Collision2D other)
+     void OnCollisionEnter2D(Collision2D other)
     {
         // if the other's game object is a platform,
         // and the height fallen exceeds the fall distance,
@@ -89,4 +89,5 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
+    */
 }
