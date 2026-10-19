@@ -333,7 +333,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.84, y: 3.84}
+    oldSize: {x: 1.035, y: 1.41}
     newSize: {x: 3.84, y: 3.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -353,11 +353,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cdba47ca7529041a6d3f050cf43f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerMovement
-  gravity: -9.81
   origspeed: 200
   movementX: 0
   movementY: 0
   slowFall: 0
+  health: 3
+  origfallDist: 10
+  fallDist: 0
 --- !u!1 &32353728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1089,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.7411765, g: 0.8745099, b: 0.8196079, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

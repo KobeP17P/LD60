@@ -29,9 +29,9 @@ public class playerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float XmoveDistance = movementX * Time.fixedDeltaTime * speed;
-        float YmoveDistance = movementY * Time.fixedDeltaTime * speed;
-        playerObj.linearVelocityX = XmoveDistance;
+        float targetVelocityX = movementX * speed;
+        float targetVelocityY = movementY * speed;
+        playerObj.linearVelocity = new Vector2(targetVelocityX, playerObj.linearVelocity.y);
         preVelocity = playerObj.linearVelocity;
     }
 
@@ -54,7 +54,8 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
-    
+    /*
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground") && preVelocity.y < 0 && -preVelocity.y >= killSpeed)
@@ -66,13 +67,15 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+    */
+
     void OnMove(InputValue value)
     {
         Vector2 inputVector = value.Get<Vector2>();
         movementX = inputVector.x;
         movementY = inputVector.y;
     }
-    /*
+    
 
      void OnCollisionEnter2D(Collision2D other)
     {
@@ -89,5 +92,5 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
-    */
+    
 }
