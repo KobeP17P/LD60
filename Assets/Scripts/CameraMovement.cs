@@ -4,7 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
     // Player object, or the object to follow
     [SerializeField] private Transform player;
-    [SerializeField] private Vector2 offset = new Vector3(0f, 3f);
+    [SerializeField] private Vector2 offset = new Vector3(0f, -3f);
     [SerializeField] private float smoothTimeX = 0.30f;
     [SerializeField] private float smoothTimeY = 0.1f;
 

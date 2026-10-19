@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
 public class playerMovement : MonoBehaviour
 {
     public float origspeed = 200f;
@@ -7,7 +8,7 @@ public class playerMovement : MonoBehaviour
     public float movementX;
     public float movementY;
     public bool slowFall = false;
-    private float killSpeed = 15f;
+    private float killSpeed = 12f;
     private float speedTime = 10f;
     private Rigidbody2D playerObj;
     [SerializeField] public int health = 3;
@@ -25,6 +26,20 @@ public class playerMovement : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        Debug.Log("Player has died");
+        Debug.Log("Press R to restart");
+    }
+
+    void OnRestart(InputValue value)
+    { 
+        origfallDist = 10f;
+        health = 3;
+        fallDist = origfallDist;
+        speed = origspeed;
+        playerObj.gravityScale = 1;
+        slowFall = false;
+        transform.position = new Vector3(0f, 0f, 0f);
+        Debug.Log("Game restarted");
     }
 
     void FixedUpdate()
@@ -54,7 +69,19 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
+
     /*
+    public async void OnBoost(InputValue value)
+    {
+        slowFall = true;
+        //speedTime = 10f;
+        playerObj.gravityScale = .5f;
+        Debug.Log("Boost activated");
+        await Task.Delay(2000);
+        Debug.Log("Boost deactivated");
+    }
+
+    */
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -67,7 +94,7 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    */
+    
 
     void OnMove(InputValue value)
     {
@@ -76,7 +103,7 @@ public class playerMovement : MonoBehaviour
         movementY = inputVector.y;
     }
     
-
+    /*
      void OnCollisionEnter2D(Collision2D other)
     {
         // if the other's game object is a platform,
@@ -84,13 +111,16 @@ public class playerMovement : MonoBehaviour
         // take damage
         if (other != null && other.gameObject.CompareTag("platform")){
             Debug.Log("Player hit a platform");
+            
             if (fallDist <= 0f)
             {
                 health -= 1;
                 Debug.Log("Ouch");
                 fallDist = origfallDist;
             }
+            
         }
     }
+    */
     
 }

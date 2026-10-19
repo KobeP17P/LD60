@@ -18,6 +18,7 @@ public class ItemPickup : MonoBehaviour
 
     // Upon collision with the player, destroy this game object
     // and give the desired effect (ex. jetpack should slow fall speed)
+    /*
     void OnCollisionEnter2D(Collision2D other)
     {
         // if the other's game object is a player,
@@ -30,4 +31,5 @@ public class ItemPickup : MonoBehaviour
         }
         Destroy(transform.gameObject);
     }
+    */
 }
